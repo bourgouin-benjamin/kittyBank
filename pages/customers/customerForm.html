@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kitty Bank | Manage Customers - Form</title>
+    
+        <link rel="icon" type="image/x-icon" href="/kittyBank/images/icon.ico">
+    
+        <link rel="stylesheet" href="/kittyBank/style.css">
+        <script src="https://kit.fontawesome.com/68ffa715f0.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header id="header">
+            <div class="logo">
+                <img src="/kittyBank/images/logo_typo.svg" alt="Kitty Bank's logo">
+            </div>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="menu" id="menu">
+                <img src="/kittyBank/images/paw.svg" alt="Kitty Paw" class="paw" id="paw">
+                <ul>
+                    <li><a href="/kittyBank/index.html">Home</a></li>
+                    <li><a href="/kittyBank/pages/customers/customers.html" title="Manage your customers with Kitty Bank" class="active">Customers</a></li>
+                    <li><a href="/kittyBank/pages/accounts/accounts.html" title="Manage your accounts with Kitty Bank">Accounts</a></li>
+                    <li><a href="/kittyBank/pages/address/address.html" title="Manage your address with Kitty Bank">Address</a></li>
+                </ul>
+                <img src="/kittyBank/images/blackCat5.svg" alt="black cat" class="menuCat">
+            </nav>
+        </header>
+        <main class="formPage">
+            <h1>Customer Form</h1>
+
+            <section class="customerForm formStyle">
+                <h2>Add new Customer</h2>
+
+                <form method="POST">
+                    <p>Customer's informations</p>
+
+                    <div class="formInput">
+                        <select id="customerType" name="customerType" required>
+                            <option disabled selected></option>
+                            <option value="PERSON">Person</option>
+                            <option value="COMPANY">Company</option>
+                        </select>
+                        <label for="customerType">Customer Type</label>
+                    </div>
+                    
+                    <div class="formInput">
+                        <input type="text" id="name" name="name" required/>
+                        <label for="name">Name</label>
+                    </div>
+
+                    <p>Address</p>
+
+                    <div class="formInput">
+                        <input type="text" id="streetNumber" name="streetNumber" required/>
+                        <label for="streetNumber">Street Number</label>
+                    </div>
+
+                    <div class="formInput">
+                        <input type="text" id="postalCode" name="postalCode" maxlength="6" required pattern="[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d" title="Postal code must respect the format X1X1X1">
+                        <label for="postalCode">Postal Code</label>
+                    </div>
+
+                    <input type="submit" value="add new customer" class="actionButton addButton"/>
+                </form>
+            </section>
+        </main>
+
+        <script src="/kittyBank/menu.js"></script>
+        <script>
+            const postalCodeInput = document.getElementById("postalCode")
+            let regex = /[A-Za-z]\d[A-Za-z]\d[A-Za-z]\d/;
+            postalCodeInput.addEventListener('input', () => {
+                if(postalCodeInput.value != '' && !regex.exec(postalCodeInput.value)){
+                    postalCodeInput.classList.add('invalid')
+                }
+                else{
+                    postalCodeInput.classList.remove('invalid')
+                }
+            })
+        </script>
+    </body>
+</html>
